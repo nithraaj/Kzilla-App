@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">SRMKzilla</string>
+
+
+    <string name="facebook_app_id">todo</string>
+    <string name="fb_login_protocol_scheme">fbtodo</string>
+
 </resources>

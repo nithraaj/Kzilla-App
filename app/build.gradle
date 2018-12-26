@@ -45,6 +45,10 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:16.1.0'
     implementation 'com.google.firebase:firebase-firestore:17.1.5'
 
+
+    implementation 'com.facebook.android:facebook-login:4.38.1'
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'

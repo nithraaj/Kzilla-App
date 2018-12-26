@@ -43,6 +43,8 @@
         <item name="colorErrorText">@color/lightColorError</item>
         <item name="colorSuccessText">@color/lightColorSuccess</item>
         <item name="colorLogoText">@color/lightLogoText</item>
+        <item name="colorTitleText">@color/lightTitleText</item>
+        <item name="colorCardBackground">@color/lightCardBackground</item>
     </style>
 
 
@@ -90,6 +92,8 @@
         <item name="colorErrorText">@color/darkColorError</item>
         <item name="colorSuccessText">@color/darkColorSuccess</item>
         <item name="colorLogoText">@color/darkLogoText</item>
+        <item name="colorTitleText">@color/darkTitleText</item>
+        <item name="colorCardBackground">@color/darkCardBackground</item>
     </style>
 
 </resources>
