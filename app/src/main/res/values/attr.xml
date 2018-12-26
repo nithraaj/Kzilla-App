@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="launcher_bg" format="reference|color" />
+    <attr name="colorErrorText" format="reference|color"/>
+    <attr name="colorSuccessText" format="reference|color"/>
+    <attr name="colorLogoText" format="reference|color"/>
+    <attr name="colorCardBackground" format="reference|color"/>
+    <attr name="colorTitleText" format="reference|color"/>
+    <attr name="colorCardTitleText" format="reference|color"/>
+    <attr name="colorCardText" format="reference|color"/>
+    <attr name="colorButton" format="reference|color"/>
+    <attr name="colorButtonActive" format="reference|color"/>
+    <attr name="colorBottomNavSelected" format="reference|color"/>
+    <attr name="colorBottomNavUnselected" format="reference|color"/>
+</resources>

@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <!-- Light theme -->
+    <color name="lightColorPrimary">#f57f17</color>
+    <color name="lightColorPrimaryDark">#e65100</color>
+    <color name="lightColorAccent">#448aff</color>
+    <color name="lightBackground">#EEEEEE</color>
+    <color name="lightColorError">#d32f2f</color>
+    <color name="lightColorSuccess">#388e3c</color>
+    <color name="lightLogoText">#111111</color>
+    <color name="lightCardBackground">#FFFFFF</color>
+    <color name="lightTitleText">#212121</color>
+    <color name="lightCardTitleText">#292929</color>
+    <color name="lightCardText">#424242</color>
+    <color name="lightButton">#fb8c00</color>
+    <color name="lightButtonActive">#ef6c00</color>
+    <color name="lightBottomNavSelected">#f57f17</color>
+    <color name="lightBottomNavUnselected">#757575</color>
+
+    <!-- Dark theme -->
+    <color name="darkColorPrimary">#d84315</color>
+    <color name="darkColorPrimaryDark">#bf360c</color>
+    <color name="darkColorAccent">#7986cb</color>
+    <color name="darkBackground">#111111</color>
+    <color name="darkColorError">#f44336</color>
+    <color name="darkColorSuccess">#69f0ae</color>
+    <color name="darkLogoText">#EEEEEE</color>
+    <color name="darkCardBackground">#222222</color>
+    <color name="darkTitleText">#eeeeee</color>
+    <color name="darkCardTitleText">#bdbdbd</color>
+    <color name="darkCardText">#9e9e9e</color>
+    <color name="darkButton">#fb8c00</color>
+    <color name="darkButtonActive">#ef6c00</color>
+    <color name="darkBottomNavSelected">#f57f17</color>
+    <color name="darkBottomNavUnselected">#757575</color>
 </resources>
