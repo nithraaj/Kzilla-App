@@ -8,10 +8,12 @@ import android.preference.PreferenceManager
 import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
+import android.util.TypedValue
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.ActionCodeSettings
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
@@ -73,7 +75,12 @@ class AuthActivity : AppCompatActivity() {
                     }
                     if (!task.isSuccessful) {
                         Log.w("SignIn", "signInWithEmail:failure", task.exception)
-                        error_msg.text = "Authentication failed."
+                        if(task.exception!! is FirebaseAuthInvalidUserException){
+                            error_msg.text = "Account does not exist\nPlease register"
+                        }
+                        else{
+                            error_msg.text = "Authentication failed."
+                        }
                         error_msg.visibility = View.VISIBLE
                         progressBar.visibility = View.GONE
 
@@ -162,7 +169,7 @@ class AuthActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     error_msg.text = String.format("Verification email sent to %s", user.email)
-                    error_msg.setTextColor(R.attr.colorSuccessText)
+                    error_msg.setTextColor(getColorByThemeAttr(context,R.attr.colorSuccessText))
                     error_msg.visibility = View.VISIBLE
                     progressBar.visibility = View.GONE
 
@@ -246,5 +253,12 @@ class AuthActivity : AppCompatActivity() {
         val theme = sharedPreferences.getString("theme", "light")
         if (currentTheme != theme)
             recreate()
+    }
+
+    fun getColorByThemeAttr(context: Context, attr: Int): Int {
+        val typedValue = TypedValue()
+        val theme = context.theme
+        theme.resolveAttribute(attr, typedValue, true)
+        return typedValue.data
     }
 }

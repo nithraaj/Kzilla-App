@@ -23,7 +23,7 @@
     <color name="darkColorAccent">#7986cb</color>
     <color name="darkBackground">#111111</color>
     <color name="darkColorError">#f44336</color>
-    <color name="darkColorSuccess">#69f0ae</color>
+    <color name="darkColorSuccess">#a7ffeb</color>
     <color name="darkLogoText">#EEEEEE</color>
     <color name="darkCardBackground">#222222</color>
     <color name="darkTitleText">#eeeeee</color>
