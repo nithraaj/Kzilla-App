@@ -29,6 +29,7 @@ class SplashActivity : AppCompatActivity() {
     private var startTime:Long = System.currentTimeMillis()
     private lateinit var mAuth:FirebaseAuth
     lateinit var context:Context
+    lateinit var alert: AlertDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         val theme: Int = if (sharedPreferences.getString("theme", "light") == "light") {
@@ -40,6 +41,17 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         context = this
+        if(savedInstanceState!=null){
+            error_msg.visibility = savedInstanceState.getInt("error_msg_visible")
+            error_msg.text = savedInstanceState.getString("error_msg_text")
+            error_msg.setTextColor(savedInstanceState.getInt("error_msg_txt_color"))
+            if(savedInstanceState.getBoolean("buttons_visible")){
+                showButtons()
+            }
+            if(savedInstanceState.getBoolean("alert_showing")){
+                searchMailApps()
+            }
+        }
         mAuth = FirebaseAuth.getInstance()
         checkInternet()
     }
@@ -66,31 +78,7 @@ class SplashActivity : AppCompatActivity() {
                     if (!mAuth.currentUser!!.isEmailVerified) {
                         error_msg.text = "Please complete e-mail verification for ${mAuth.currentUser!!.email}"
                         error_msg.visibility = View.VISIBLE
-                        openEmail.text = "Open Email App"
-                        openEmail.setOnClickListener {
-                            /*
-                            val emailLauncher = Intent(Intent.ACTION_VIEW)
-                            //emailLauncher.setClassName("com.google.android.gm", "com.google.android.gm.ConversationListActivityGmail")
-                            try {
-                                //startActivity(emailLauncher)
-                            } catch (e: ActivityNotFoundException) {
-                                Toast.makeText(context,"No Email app found", Toast.LENGTH_SHORT).show()
-                                openEmail.visibility = View.GONE
-                            }
-                            */
-                            searchMailApps()
-
-                        }
-                        openEmail.visibility = View.VISIBLE
-                        differentAccount.text = "Proceed with different account"
-                        differentAccount.setOnClickListener {
-                            mAuth.signOut()
-                            val intentAuth = Intent(context, AuthActivity::class.java)
-                            intentAuth.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-                            startActivity(intentAuth)
-                            finish()
-                        }
-                        differentAccount.visibility = View.VISIBLE
+                        showButtons()
                     }
                 }
                 .addOnFailureListener { e ->
@@ -271,7 +259,9 @@ class SplashActivity : AppCompatActivity() {
                         launchEmailApp(emailActivitiesForDialog[which])
                     }
 
-                    builder.create().show()
+
+                    alert = builder.create()
+                    alert.show()
                 }
             } else {
 
@@ -288,6 +278,48 @@ class SplashActivity : AppCompatActivity() {
     fun launchEmailApp(p_selectedEmailApp: ResolveInfo) {
         val emailIntent = context.packageManager.getLaunchIntentForPackage(p_selectedEmailApp.activityInfo.packageName)
         context.startActivity(emailIntent)
+    }
+
+    fun showButtons(){
+        openEmail.text = "Open Email App"
+        openEmail.setOnClickListener {
+            /*
+            val emailLauncher = Intent(Intent.ACTION_VIEW)
+            //emailLauncher.setClassName("com.google.android.gm", "com.google.android.gm.ConversationListActivityGmail")
+            try {
+                //startActivity(emailLauncher)
+            } catch (e: ActivityNotFoundException) {
+                Toast.makeText(context,"No Email app found", Toast.LENGTH_SHORT).show()
+                openEmail.visibility = View.GONE
+            }
+            */
+            searchMailApps()
+
+        }
+        openEmail.visibility = View.VISIBLE
+        differentAccount.text = "Proceed with different account"
+        differentAccount.setOnClickListener {
+            mAuth.signOut()
+            val intentAuth = Intent(context, AuthActivity::class.java)
+            intentAuth.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            startActivity(intentAuth)
+            finish()
+        }
+        differentAccount.visibility = View.VISIBLE
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        // Save the user's current game state
+        outState.run {
+            putInt("error_msg_visible", error_msg.visibility)
+            putString("error_msg_text", error_msg.text.toString())
+            putInt("error_msg_txt_color",error_msg.currentTextColor)
+            putBoolean("buttons_visible",openEmail.visibility==View.VISIBLE)
+            putBoolean("alert_showing",::alert.isInitialized && alert.isShowing)
+        }
+
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(outState)
     }
 
 
