@@ -5,4 +5,12 @@
     <string name="facebook_app_id">todo</string>
     <string name="fb_login_protocol_scheme">fbtodo</string>
 
+
+    <string-array name="years">
+        <item>1st Year</item>
+        <item>2nd Year</item>
+        <item>3rd Year</item>
+        <item>4th Year</item>
+    </string-array>
+
 </resources>
