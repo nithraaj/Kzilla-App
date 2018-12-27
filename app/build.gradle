@@ -44,6 +44,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.6'
     implementation 'com.google.firebase:firebase-auth:16.1.0'
     implementation 'com.google.firebase:firebase-firestore:17.1.5'
+    implementation 'com.google.firebase:firebase-dynamic-links:16.1.5'
 
 
     implementation 'com.facebook.android:facebook-login:4.38.1'

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="org.kzilla.srmkzilla">
+
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
@@ -42,6 +43,26 @@
                 <category android:name="android.intent.category.BROWSABLE"/>
 
                 <data android:scheme="@string/fb_login_protocol_scheme"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".SettingsActivity">
+        </activity>
+        <activity android:name=".DeepLinkActivity">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                        android:host="kzilla-app.firebaseapp.com"
+                        android:scheme="https"/>
+                <data
+                        android:host="srmkzilla.page.link"
+                        android:scheme="https"/>
+                <data
+                        android:host="www.srmkzilla.net"
+                        android:scheme="https"/>
             </intent-filter>
         </activity>
     </application>
