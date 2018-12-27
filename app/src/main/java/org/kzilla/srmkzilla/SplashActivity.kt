@@ -1,9 +1,10 @@
 package org.kzilla.srmkzilla
 
-import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.ResolveInfo
+import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Handler
@@ -11,6 +12,7 @@ import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -66,14 +68,17 @@ class SplashActivity : AppCompatActivity() {
                         error_msg.visibility = View.VISIBLE
                         openEmail.text = "Open Email App"
                         openEmail.setOnClickListener {
+                            /*
                             val emailLauncher = Intent(Intent.ACTION_VIEW)
-                            emailLauncher.type = "message/rfc822"
+                            //emailLauncher.setClassName("com.google.android.gm", "com.google.android.gm.ConversationListActivityGmail")
                             try {
-                                startActivity(emailLauncher)
+                                //startActivity(emailLauncher)
                             } catch (e: ActivityNotFoundException) {
                                 Toast.makeText(context,"No Email app found", Toast.LENGTH_SHORT).show()
                                 openEmail.visibility = View.GONE
                             }
+                            */
+                            searchMailApps()
 
                         }
                         openEmail.visibility = View.VISIBLE
@@ -140,7 +145,7 @@ class SplashActivity : AppCompatActivity() {
         val docRef = db.collection("users").document(mAuth.uid!!)
         docRef.get()
             .addOnSuccessListener { document ->
-                if (document != null){
+                if (document.exists()){
                     val editor = sharedPreferences.edit()
                     editor.putString("user_name", document.getString("name"))
                     editor.putString("user_regno", document.getString("register_no"))
@@ -216,6 +221,73 @@ class SplashActivity : AppCompatActivity() {
 
     interface Consumer {
         fun accept(internet: Boolean?)
+    }
+
+    fun searchMailApps() {
+        try {
+            val pm = context.packageManager
+            var selectedEmailActivity: ResolveInfo? = null
+
+            val emailDummyIntent = Intent(Intent.ACTION_SENDTO)
+            emailDummyIntent.data = Uri.parse("mailto:some@emaildomain.com")
+
+            var emailActivities: List<ResolveInfo>? = pm.queryIntentActivities(emailDummyIntent, 0)
+
+            if (null == emailActivities || emailActivities.size == 0) {
+                Log.d("email","mailto=0")
+                val emailDummyIntentRFC822 = Intent(Intent.ACTION_SEND_MULTIPLE)
+                emailDummyIntentRFC822.type = "message/rfc822"
+
+                emailActivities = pm.queryIntentActivities(emailDummyIntentRFC822, 0)
+            }
+
+            if (null != emailActivities) {
+                if (emailActivities.size == 1) {
+                    selectedEmailActivity = emailActivities[0]
+                } else {
+                    for (currAvailableEmailActivity in emailActivities) {
+                        if (true == currAvailableEmailActivity.isDefault) {
+                            selectedEmailActivity = currAvailableEmailActivity
+                        }
+                    }
+                }
+
+                if (null != selectedEmailActivity) {
+                    // Send email using the only/default email activity
+                    launchEmailApp(selectedEmailActivity)
+                } else {
+                    val emailActivitiesForDialog = emailActivities
+
+                    val availableEmailAppsName = arrayOfNulls<String>(emailActivitiesForDialog.size)
+                    for (i in emailActivitiesForDialog.indices) {
+                        availableEmailAppsName[i] =
+                                emailActivitiesForDialog[i].activityInfo.applicationInfo.loadLabel(pm).toString()
+                    }
+
+                    val builder = AlertDialog.Builder(context)
+                    builder.setTitle("Select email app")
+                    builder.setItems(availableEmailAppsName
+                    ) { dialog, which ->
+                        launchEmailApp(emailActivitiesForDialog[which])
+                    }
+
+                    builder.create().show()
+                }
+            } else {
+
+                Log.d("email","rfc822=0")
+                Toast.makeText(context,"No Email app found", Toast.LENGTH_SHORT).show()
+                openEmail.visibility = View.GONE
+            }
+        } catch (ex: Exception) {
+            Log.e("email", "Can't send email", ex)
+        }
+
+    }
+
+    fun launchEmailApp(p_selectedEmailApp: ResolveInfo) {
+        val emailIntent = context.packageManager.getLaunchIntentForPackage(p_selectedEmailApp.activityInfo.packageName)
+        context.startActivity(emailIntent)
     }
 
 
