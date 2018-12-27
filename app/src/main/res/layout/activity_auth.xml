@@ -124,7 +124,8 @@
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
             android:textColor="?attr/colorErrorText" android:visibility="gone"
             android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/b_signup"/>
+            app:layout_constraintBottom_toTopOf="@+id/b_signup" android:paddingEnd="8dp" android:paddingStart="8dp"
+            android:textAlignment="center"/>
     <TextView
             android:text="OR"
             android:layout_width="wrap_content"
