@@ -7,10 +7,14 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.Menu
 import android.view.MenuItem
+import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() , BottomNavigationView.OnNavigationItemSelectedListener{
     private lateinit var sharedPreferences: SharedPreferences
     lateinit var context: Context
     lateinit var currentTheme:String
@@ -26,6 +30,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         context = this
+        loadFragment(EventsFragment())
+        navigation.setOnNavigationItemSelectedListener(this)
     }
 
 
@@ -55,6 +61,39 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+    override fun onNavigationItemSelected(@NonNull item: MenuItem): Boolean {
+        var fragment: Fragment? = null
+
+        when (item.itemId) {
+            R.id.events -> fragment = EventsFragment()
+
+            R.id.chats -> fragment = ChatsFragment()
+
+            R.id.certificates -> fragment = CertificatesFragment()
+
+            R.id.about -> fragment = AboutFragment()
+        }
+
+        return loadFragment(fragment)
+    }
+
+    private fun loadFragment(fragment: Fragment?): Boolean {
+        //switching fragment
+        if (fragment != null) {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .commit()
+            return true
+        }
+        return false
+    }
+
+    fun setActionBarTitle(title: String) {
+        supportActionBar?.title = title
+    }
+
     override fun onResume() {
         super.onResume()
         val theme = sharedPreferences.getString("theme", "light")
