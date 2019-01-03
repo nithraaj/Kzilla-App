@@ -60,6 +60,15 @@ class DeepLinkActivity : AppCompatActivity() {
                                 }
                                 finish()
                             }
+                    } else if (deepLink.lastPathSegment == "events") run {
+                        // todo: open registration activity
+                        val intent = Intent(context, RegistrationActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        val event_id = deepLink.getQueryParameter("event_id")
+                        intent.putExtra("event_id", event_id)
+                        context.startActivity(intent)
+                        finish()
+
                     } else {
                         Toast.makeText(context, "Unknown link. Try updating app.", Toast.LENGTH_LONG).show()
                         finish()
