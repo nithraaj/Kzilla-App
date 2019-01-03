@@ -55,12 +55,12 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/title_upcoming" android:layout_marginTop="8dp"
                         android:layout_marginStart="8dp" android:textSize="18sp" android:textStyle="bold"
-                        android:textColor="?attr/colorTitleText"/>
+                        android:textColor="?attr/colorTitleText" android:visibility="gone"/>
                 <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="8dp"
-                        android:id="@+id/recycler_upcoming"/>
+                        android:id="@+id/recycler_upcoming" android:visibility="gone"/>
             </LinearLayout>
         </ScrollView>
 
