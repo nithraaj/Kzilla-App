@@ -34,6 +34,14 @@ class EventClass(application: Application):AndroidViewModel(application) {
         return _carousel
     }
 
+    fun getEventById(eventId:String, fromNetwork: Boolean?):LiveData<UpcomingEventsRepository.UpcomingEventsData>{
+        return upcomingEventsRepo.getEventById(eventId,fromNetwork)
+    }
+
+    fun getRegistrationById(registrationId:String, fromNetwork: Boolean?):LiveData<RegisteredEventsRepository.RegisteredEventsData>{
+        return registeredEventsRepo.getRegistrationById(registrationId,fromNetwork)
+    }
+
 
 }
 
