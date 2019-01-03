@@ -172,6 +172,8 @@ class AuthActivity : AppCompatActivity() {
                 b_login.isEnabled = true
                 google_sign_in.isEnabled = true
                 facebook_sign_in.isEnabled = true
+
+                //todo: show button to open email app
             }
         }
     }

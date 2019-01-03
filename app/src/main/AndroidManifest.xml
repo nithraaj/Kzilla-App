@@ -65,6 +65,10 @@
                         android:scheme="https"/>
             </intent-filter>
         </activity>
+        <activity android:name=".RegistrationActivity">
+        </activity>
+        <activity android:name=".QRActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package org.kzilla.srmkzilla
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,16 +40,10 @@ class RegisteredEventRecyclerAdapter(private val mDataset: ArrayList<RegisteredE
         event_QRcode.setImageBitmap(Utils.generateQrCode(mDataset[position].registrationId))
         val card = holder.view.findViewById<View>(R.id.card) as CardView
         card.setOnClickListener {
-            /*
-                Intent intent = new Intent(context,QRActivity.class);
-                intent.putExtra("event_id",mDataset.get(position).eventID);
-                intent.putExtra("event_name",mDataset.get(position).event_name);
-                intent.putExtra("event_start",mDataset.get(position).event_start);
-                intent.putExtra("event_venue",mDataset.get(position).event_venue);
-                intent.putExtra("event_end",mDataset.get(position).event_end);
-                intent.putExtra("reg_id",mDataset.get(position).event_registration_ID);
-                context.startActivity(intent);
-                */
+            var intent = Intent(context,QRActivity::class.java)
+            intent.putExtra("registration_id",mDataset.get(position).registrationId)
+            context.startActivity(intent)
+
         }
     }
 
