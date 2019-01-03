@@ -74,6 +74,9 @@ object UpcomingEventsRepository{
         upcomingQuery.get().addOnSuccessListener { queryDocumentSnapshots ->
             val upcomingEvents = ArrayList<UpcomingEvent>()
             Log.d("firebase_docs",queryDocumentSnapshots.size().toString())
+            if(queryDocumentSnapshots.isEmpty){
+                eventsLive.postValue(UpcomingEventsData(Status.FetchOK,upcomingEvents,"firebase"))
+            }
             for (document in queryDocumentSnapshots.documents) {
                 Log.d("upcoming_doc",document.toString())
                 val data = UpcomingEvent(document.id,

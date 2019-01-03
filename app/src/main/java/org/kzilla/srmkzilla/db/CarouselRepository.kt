@@ -3,6 +3,7 @@ package org.kzilla.srmkzilla.db
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.room.Room
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 import kotlin.collections.ArrayList
@@ -13,6 +14,7 @@ object CarouselRepository{
     private val max_refresh_period_seconds = 600 // 10 minutes
 
     fun init(applicationContext: Context):CarouselRepository{
+        carouselDatabase = Room.databaseBuilder(applicationContext, EventsDatabase::class.java, "carousel").allowMainThreadQueries().build()
         return this
     }
 
@@ -83,6 +85,9 @@ object CarouselRepository{
         carouselLive.postValue(Carousel(Status.Fetching,null,null))
         carouselRef.get().addOnSuccessListener { querySnapshot ->
             val carousels = ArrayList<CarouselData>()
+            if(querySnapshot.isEmpty){
+                carouselLive.postValue(Carousel(Status.FetchOK,carousels,"firebase"))
+            }
             for( document in querySnapshot.documents) {
                 val carousel = CarouselData(
                     document.id,

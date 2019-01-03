@@ -64,6 +64,9 @@ object RegisteredEventsRepository{
         eventsLive.postValue(RegisteredEventsData(Status.Fetching,null,null))
         registeredQuery.get().addOnSuccessListener { queryDocumentSnapshots ->
             val registeredEvents = ArrayList<RegisteredEvent>()
+            if(queryDocumentSnapshots.isEmpty){
+                eventsLive.postValue(RegisteredEventsData(Status.FetchOK,registeredEvents,"firebase"))
+            }
             for (document in queryDocumentSnapshots.documents) {
                 val event_id = document.getString("event_id")
                 val docRef = firestore_db.collection("events").document(event_id!!)
