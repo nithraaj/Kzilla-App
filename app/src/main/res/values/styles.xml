@@ -1,11 +1,99 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <!-- Light theme. -->
+    <style name="LightTheme" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/lightColorPrimary</item>
+        <item name="colorPrimaryDark">@color/lightColorPrimaryDark</item>
+        <item name="colorAccent">@color/lightColorAccent</item>
+        <item name="colorErrorText">@color/lightColorError</item>
+        <item name="colorSuccessText">@color/lightColorSuccess</item>
+        <item name="colorLogoText">@color/lightLogoText</item>
+        <item name="colorCardBackground">@color/lightCardBackground</item>
+        <item name="colorTitleText">@color/lightTitleText</item>
+        <item name="colorCardTitleText">@color/lightCardTitleText</item>
+        <item name="colorCardText">@color/lightCardText</item>
+        <item name="colorButton">@color/lightButton</item>
+        <item name="colorButtonActive">@color/lightButtonActive</item>
+        <item name="colorBottomNavSelected">@color/lightBottomNavSelected</item>
+        <item name="colorBottomNavUnselected">@color/lightBottomNavUnselected</item>
+        <item name="android:windowBackground">@color/lightBackground</item>
+    </style>
+    <style name="LightThemeNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/lightColorPrimary</item>
+        <item name="colorPrimaryDark">@color/lightColorPrimaryDark</item>
+        <item name="colorAccent">@color/lightColorAccent</item>
+        <item name="colorErrorText">@color/lightColorError</item>
+        <item name="colorSuccessText">@color/lightColorSuccess</item>
+        <item name="colorLogoText">@color/lightLogoText</item>
+        <item name="colorCardBackground">@color/lightCardBackground</item>
+        <item name="colorTitleText">@color/lightTitleText</item>
+        <item name="colorCardTitleText">@color/lightCardTitleText</item>
+        <item name="colorCardText">@color/lightCardText</item>
+        <item name="colorButton">@color/lightButton</item>
+        <item name="colorButtonActive">@color/lightButtonActive</item>
+        <item name="colorBottomNavSelected">@color/lightBottomNavSelected</item>
+        <item name="colorBottomNavUnselected">@color/lightBottomNavUnselected</item>
+        <item name="android:windowBackground">@color/lightBackground</item>
+    </style>
+
+    <style name="LightLauncher" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimaryDark">@color/lightBackground</item>
+        <item name="launcher_bg">@color/lightBackground</item>
+        <item name="android:windowBackground">@drawable/launch_screen</item>
+        <item name="colorErrorText">@color/lightColorError</item>
+        <item name="colorSuccessText">@color/lightColorSuccess</item>
+        <item name="colorLogoText">@color/lightLogoText</item>
+        <item name="colorTitleText">@color/lightTitleText</item>
+        <item name="colorCardBackground">@color/lightCardBackground</item>
+    </style>
+
+
+    <!-- Dark theme. -->
+    <style name="DarkTheme" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/darkColorPrimary</item>
+        <item name="colorPrimaryDark">@color/darkColorPrimaryDark</item>
+        <item name="colorAccent">@color/darkColorAccent</item>
+        <item name="colorErrorText">@color/darkColorError</item>
+        <item name="colorSuccessText">@color/darkColorSuccess</item>
+        <item name="colorLogoText">@color/darkLogoText</item>
+        <item name="colorCardBackground">@color/darkCardBackground</item>
+        <item name="colorTitleText">@color/darkTitleText</item>
+        <item name="colorCardTitleText">@color/darkCardTitleText</item>
+        <item name="colorCardText">@color/darkCardText</item>
+        <item name="colorButton">@color/darkButton</item>
+        <item name="colorButtonActive">@color/darkButtonActive</item>
+        <item name="colorBottomNavSelected">@color/darkBottomNavSelected</item>
+        <item name="colorBottomNavUnselected">@color/darkBottomNavUnselected</item>
+        <item name="android:windowBackground">@color/darkBackground</item>
+    </style>
+
+    <style name="DarkThemeNoActionBar" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/darkColorPrimary</item>
+        <item name="colorPrimaryDark">@color/darkColorPrimaryDark</item>
+        <item name="colorAccent">@color/darkColorAccent</item>
+        <item name="colorErrorText">@color/darkColorError</item>
+        <item name="colorSuccessText">@color/darkColorSuccess</item>
+        <item name="colorLogoText">@color/darkLogoText</item>
+        <item name="colorCardBackground">@color/darkCardBackground</item>
+        <item name="colorTitleText">@color/darkTitleText</item>
+        <item name="colorCardTitleText">@color/darkCardTitleText</item>
+        <item name="colorCardText">@color/darkCardText</item>
+        <item name="colorButton">@color/darkButton</item>
+        <item name="colorButtonActive">@color/darkButtonActive</item>
+        <item name="colorBottomNavSelected">@color/darkBottomNavSelected</item>
+        <item name="colorBottomNavUnselected">@color/darkBottomNavUnselected</item>
+        <item name="android:windowBackground">@color/darkBackground</item>
+    </style>
+
+    <style name="DarkLauncher" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimaryDark">@color/darkBackground</item>
+        <item name="launcher_bg">@color/darkBackground</item>
+        <item name="android:windowBackground">@drawable/launch_screen</item>
+        <item name="colorErrorText">@color/darkColorError</item>
+        <item name="colorSuccessText">@color/darkColorSuccess</item>
+        <item name="colorLogoText">@color/darkLogoText</item>
+        <item name="colorTitleText">@color/darkTitleText</item>
+        <item name="colorCardBackground">@color/darkCardBackground</item>
     </style>
 
 </resources>

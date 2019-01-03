@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content" android:orientation="vertical">
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@android:id/text1"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:textAppearance="?android:attr/textAppearanceListItemSmall"
+              android:gravity="center_vertical"
+              android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+              android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+              android:minHeight="?android:attr/listPreferredItemHeightSmall"
+              android:maxLines="2" android:scrollHorizontally="false" android:singleLine="false"
+              android:textColor="?attr/colorCardTitleText" android:ellipsize="end"/>
+    <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="?attr/colorCardText" android:layout_marginLeft="2dp" android:layout_marginRight="2dp"/>
+
+</LinearLayout>

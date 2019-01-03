@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+>
+    <item android:id="@+id/events"
+          android:title="Events"
+          android:icon="@drawable/ic_round_event_24px"/>
+    <item android:id="@+id/chats"
+          android:title="Chats"
+          android:icon="@drawable/ic_round_chat_24px"/>
+    <item android:id="@+id/certificates"
+          android:title="Certificates"
+          android:icon="@drawable/ic_certificate"/>
+    <item android:id="@+id/about"
+          android:title="About"
+          android:icon="@drawable/ic_info_24px"/>
+</menu>

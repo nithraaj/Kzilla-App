@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".AdditionalInfoActivity">
+    <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:text="Thank you for Signing up\nWe require some additional information"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" android:textColor="?attr/colorTitleText"/>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/progressBar"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <EditText
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
+                    android:layout_marginTop="8dp"
+                    android:ems="10"
+                    android:hint="Name"
+                    android:inputType="textPersonName"
+                    android:background="@drawable/auth_input"
+                    android:padding="8dp"
+                    android:textColor="?attr/colorCardTitleText"/>
+
+            <EditText
+                    android:id="@+id/regno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
+                    android:layout_marginTop="8dp"
+                    android:ems="10"
+                    android:hint="Register Number"
+                    android:inputType="text|textCapCharacters"
+                    android:background="@drawable/auth_input"
+                    android:padding="8dp"
+                    android:textColor="?attr/colorCardTitleText" />
+
+            <EditText
+                    android:id="@+id/phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
+                    android:layout_marginTop="8dp"
+                    android:ems="10"
+                    android:hint="Phone Number"
+                    android:inputType="phone"
+                    android:background="@drawable/auth_input"
+                    android:padding="8dp"
+                    android:textColor="?attr/colorCardTitleText" />
+            <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:background="@drawable/auth_input" android:layout_marginLeft="32dp"
+                            android:layout_marginRight="32dp" android:layout_marginTop="8dp">
+                <Spinner
+                        android:id="@+id/year"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/years"
+                        android:paddingBottom="8dp"
+                        android:padding="8dp"
+                        android:textColor="?attr/colorCardTitleText"
+                        android:popupBackground="?attr/colorCardBackground"/>
+            </RelativeLayout>
+
+
+            <AutoCompleteTextView
+                    android:id="@+id/dept"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
+                    android:layout_marginTop="8dp"
+                    android:hint="Department"
+                    android:background="@drawable/auth_input"
+                    android:padding="8dp"
+                    android:textColor="?attr/colorCardTitleText" />
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+    <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/submit" android:layout_marginBottom="8dp"/>
+
+    <Button
+            android:id="@+id/submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:paddingLeft="32dp"
+            android:paddingRight="32dp"
+            android:text="Submit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" android:background="@drawable/button_solid"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
