@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import org.kzilla.srmkzilla.Utils.getShareLink
 import org.kzilla.srmkzilla.db.UpcomingEvent
 import java.text.SimpleDateFormat
@@ -41,22 +42,16 @@ class UpcomingEventRecyclerAdapter(private val mDataset: ArrayList<UpcomingEvent
             parseEventDates(mDataset[position].eventStart, mDataset[position].eventEnd)
         )
         val event_icon = holder.view.findViewById<View>(R.id.event_icon) as ImageView
+        Glide.with(context).load(mDataset[position].eventIcon).into(event_icon)
         // todo: change default and error images
         //event_icon.setDefaultImageResId(R.drawable.kzilla_logo);
         //event_icon.setErrorImageResId(R.drawable.kzilla_logo);
         //event_icon.setImageUrl(mDataset.get(position).eventIconSmallURL);
         val card = holder.view.findViewById<View>(R.id.card) as CardView
         card.setOnClickListener {
-            /*
-                Intent intent = new Intent(context,RegistrationActivity.class);
-                intent.putExtra("event_id",mDataset.get(position).eventID);
-                intent.putExtra("event_name",mDataset.get(position).eventName);
-                intent.putExtra("event_date",parseEventDates(mDataset.get(position).eventStartDate,mDataset.get(position).eventEndDate));
-                intent.putExtra("event_venue",mDataset.get(position).eventVenue);
-                intent.putExtra("event_description",mDataset.get(position).eventDetailedContent);
-                intent.putExtra("poster_url",mDataset.get(position).eventIconLargeURL);
-                context.startActivity(intent);
-                */
+            val intent = Intent(context,RegistrationActivity::class.java)
+            intent.putExtra("event_id",mDataset.get(position).eventId)
+            context.startActivity(intent)
         }
         share.setOnClickListener { shareEvent(mDataset[position].eventId) }
 
